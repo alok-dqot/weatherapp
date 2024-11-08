@@ -1,0 +1,8 @@
+[build]
+  command = "tsc --build"
+  publish = "dist/server"  # Adjust this to your actual build output path if different
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
