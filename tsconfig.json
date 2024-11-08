@@ -1,4 +1,8 @@
 {
+  "compilerOptions": {
+    "outDir": "./dist", // Ensure all builds output to a common directory
+    "composite": true   // Enables project references
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
