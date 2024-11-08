@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-
 import {
-  Cloud, Sun, CloudRain, Wind, Thermometer,
+  Cloud, Wind, Thermometer,
   Droplets, Timer, Search, Brain,
   Globe, Book, ArrowRight
 } from 'lucide-react';
@@ -51,14 +50,14 @@ const WeatherDashboard = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [activeTab, setActiveTab] = useState<string>('weather');
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  // const [error, setError] = useState<string>('');
 
   const API_KEY = '75e731a704840da325abfb147b1e8be5';
   const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
   const fetchWeatherData = async () => {
     setLoading(true);
-    setError('');
+    // setError('');
     try {
       const [currentResponse, forecastResponse] = await Promise.all([
         axios.get(`${BASE_URL}/weather`, {
@@ -91,7 +90,8 @@ const WeatherDashboard = () => {
         forecast
       });
     } catch (error) {
-      setError('Unable to fetch weather data. Please try again.');
+      console.log(error)
+      // setError('Unable to fetch weather data. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -103,20 +103,20 @@ const WeatherDashboard = () => {
     }
   }, [location]);
 
-  const getWeatherIcon = (condition: string) => {
-    switch (condition.toLowerCase()) {
-      case 'sunny':
-        return <Sun className="w-8 h-8 text-yellow-500 animate-pulse" />;
-      case 'cloudy':
-        return <Cloud className="w-8 h-8 text-gray-500 animate-bounce" />;
-      case 'rain':
-        return <CloudRain className="w-8 h-8 text-blue-500 animate-bounce" />;
-      case 'partly cloudy':
-        return <Cloud className="w-8 h-8 text-gray-400 animate-pulse" />;
-      default:
-        return <Sun className="w-8 h-8 text-yellow-500" />;
-    }
-  };
+  // const getWeatherIcon = (condition: string) => {
+  //   switch (condition.toLowerCase()) {
+  //     case 'sunny':
+  //       return <Sun className="w-8 h-8 text-yellow-500 animate-pulse" />;
+  //     case 'cloudy':
+  //       return <Cloud className="w-8 h-8 text-gray-500 animate-bounce" />;
+  //     case 'rain':
+  //       return <CloudRain className="w-8 h-8 text-blue-500 animate-bounce" />;
+  //     case 'partly cloudy':
+  //       return <Cloud className="w-8 h-8 text-gray-400 animate-pulse" />;
+  //     default:
+  //       return <Sun className="w-8 h-8 text-yellow-500" />;
+  //   }
+  // };
 
   interface WeatherMetricProps {
     icon: React.ComponentType<{ className?: string }>;
